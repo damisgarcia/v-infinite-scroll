@@ -1,9 +1,10 @@
 {
   "name": "@damisgarcia/v-infinite-scroll",
-  "version": "0.6.0",
+  "version": "0.7.3",
   "type": "module",
   "main": "dist/v-infinite-scroll.js",
   "module": "dist/v-infinite-scroll.umd.cjs",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist/*"
   ],
@@ -42,6 +43,7 @@
     "rollup-plugin-vue": "^6.0.0",
     "typescript": "~5.4.0",
     "vite": "^5.3.1",
+    "vite-plugin-dts": "^3.9.1",
     "vite-plugin-vue-devtools": "^7.3.1",
     "vitest": "^1.6.0",
     "vue-tsc": "^2.0.21"
