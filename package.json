@@ -1,14 +1,17 @@
 {
-  "name": "v-infinite-scroll",
-  "version": "0.2.0",
-  "private": true,
+  "name": "@damisgarcia/v-infinite-scroll",
+  "version": "0.6.0",
   "type": "module",
+  "main": "dist/v-infinite-scroll.js",
+  "module": "dist/v-infinite-scroll.umd.cjs",
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "rollup -c",
+    "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
-    "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
@@ -23,6 +26,7 @@
     "@tsconfig/node20": "^20.1.4",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^20.14.5",
+    "@types/rollup-plugin-peer-deps-external": "^2.2.5",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^13.0.0",
