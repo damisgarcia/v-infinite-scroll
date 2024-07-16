@@ -1,45 +1,91 @@
-# v-infinite-scroll
+### Enhanced Description
 
-This template should help get you started developing with Vue 3 in Vite.
+`v-infinite-scroll` is a Vue 3 directive based on the Intersection Observer API. It provides a simple and performance-focused solution for loading new items in a `v-for` list as the user scrolls. By leveraging this directive, you can efficiently manage large lists by loading items incrementally, which enhances the user experience and reduces the initial load time.
 
-## Recommended IDE Setup
+### Installation
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+To install the `v-infinite-scroll` directive, you can use the following command with the Bun package manager:
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-bun install
+```bash
+bun add @damisgarcia/v-infinite-scroll
 ```
 
-### Compile and Hot-Reload for Development
+### Usage with Options
 
-```sh
-bun dev
+Here is an example of how to use the `v-infinite-scroll` directive with additional options such as `rootMargin`, `threshold`, `wait`, and `onComplete`:
+
+```vue
+<template>
+  <div
+    v-infinite-scroll="{ rootMargin: '0px', threshold: 0.15, wait: 400, onComplete: loadMoreItems }"
+  >
+    <div v-for="item in list" :key="item.id">
+      {{ item.name }}
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { vInfiniteScroll } from '@damisgarcia/v-infinite-scroll'
+
+const list = ref([
+  { id: 1, name: 'Item 1' },
+  { id: 2, name: 'Item 2' }
+])
+
+const loadMoreItems = () => {
+  // Function to load more items and add them to the list
+  const newItems = [
+    { id: list.value.length + 1, name: `Item ${list.value.length + 1}` },
+    { id: list.value.length + 2, name: `Item ${list.value.length + 2}` }
+  ]
+  list.value.push(...newItems)
+}
+</script>
 ```
 
-### Type-Check, Compile and Minify for Production
+### Options
 
-```sh
-bun build
+1. **rootMargin**: This option sets a margin around the root container for the `IntersectionObserver`. A value of `'0px'` means the observation will occur exactly at the edge of the container.
+
+2. **threshold**: This option defines the percentage of the target that must be visible before triggering the callback. A value of `0.15` means the callback will be triggered when 15% of the target is visible.
+
+3. **wait**: This option sets the wait time (in milliseconds) to block new interactions, similar to a debounce functionality. This helps prevent multiple callback triggers in a short period.
+
+4. **onComplete**: This option specifies the function that will be called when the scroll reaches the limit defined by the `IntersectionObserver`.
+
+### Complete Example
+
+```vue
+<template>
+  <div
+    v-infinite-scroll="{ rootMargin: '0px', threshold: 0.15, wait: 400, onComplete: loadMoreItems }"
+  >
+    <div v-for="item in list" :key="item.id">
+      {{ item.name }}
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { vInfiniteScroll } from '@damisgarcia/v-infinite-scroll'
+
+const list = ref([
+  { id: 1, name: 'Item 1' },
+  { id: 2, name: 'Item 2' }
+])
+
+const loadMoreItems = () => {
+  // Function to load more items and add them to the list
+  const newItems = [
+    { id: list.value.length + 1, name: `Item ${list.value.length + 1}` },
+    { id: list.value.length + 2, name: `Item ${list.value.length + 2}` }
+  ]
+  list.value.push(...newItems)
+}
+</script>
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-bun test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-bun lint
-```
+With these options configured, you can have more precise control over when and how new items are loaded, improving both user experience and application performance.

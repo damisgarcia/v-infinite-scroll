@@ -1,6 +1,17 @@
 {
   "name": "@damisgarcia/v-infinite-scroll",
-  "version": "0.7.9",
+  "version": "0.8.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/damisgarcia/v-infinite-scroll"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "infinite",
+    "scroll",
+    "v-infinite-scroll"
+  ],
   "type": "module",
   "main": "dist/v-infinite-scroll.js",
   "module": "dist/v-infinite-scroll.umd.cjs",
@@ -50,5 +61,6 @@
   },
   "peerDependencies": {
     "vue": "^3.4.29"
-  }
+  },
+  "license": "MIT"
 }
