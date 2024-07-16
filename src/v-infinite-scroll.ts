@@ -2,13 +2,6 @@ import { type Directive } from 'vue'
 
 import { useDebounceFn } from '@vueuse/core'
 
-interface vInfiniteScrollBindings {
-  rootMargin: string
-  threshold: number
-  wait: number
-  onComplete(): void
-}
-
 function appendTriggerElement(el: Element) {
   const trigger = document.createElement('span')
   trigger.id = 'trigger'
@@ -16,9 +9,17 @@ function appendTriggerElement(el: Element) {
   return trigger
 }
 
-export const vInfiniteScroll = {
+export const vInfiniteScroll: Directive<
+  HTMLElement,
+  {
+    rootMargin: string
+    threshold: number
+    wait: number
+    onComplete(): void
+  }
+> = {
   mounted(el: HTMLElement, bindings) {
-    const params = bindings.value as vInfiniteScrollBindings
+    const params = bindings.value
 
     if (el.children.length > 1) {
       throw 'vInfineScroll: Expected single child element'
@@ -43,4 +44,4 @@ export const vInfiniteScroll = {
     const observer = new IntersectionObserver(handleIntersection, options)
     observer.observe(trigger)
   }
-} as Directive
+}

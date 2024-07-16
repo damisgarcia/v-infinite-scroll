@@ -1,6 +1,6 @@
 {
   "name": "@damisgarcia/v-infinite-scroll",
-  "version": "0.7.3",
+  "version": "0.7.9",
   "type": "module",
   "main": "dist/v-infinite-scroll.js",
   "module": "dist/v-infinite-scroll.umd.cjs",
